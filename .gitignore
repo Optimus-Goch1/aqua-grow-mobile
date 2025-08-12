@@ -36,4 +36,9 @@ yarn-error.*
 *.tsbuildinfo
 
 /android
+/build
+/ios
+
+.idea
+.expo
 
