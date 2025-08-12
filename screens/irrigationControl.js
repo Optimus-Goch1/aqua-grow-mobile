@@ -80,8 +80,6 @@ const IrrigationControl = () => {
 
     return (
         <ScrollView style={styles.container}>
-
-
             <Text style={styles.sectionTitle}>Manual Control Settings</Text>
             <View style={styles.switchRow}>
                 <Text style={styles.label}>Irrigation Switch</Text>
