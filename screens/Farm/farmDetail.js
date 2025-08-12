@@ -1,12 +1,14 @@
 import {Image, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View} from 'react-native';
 import {useNavigation, useRoute} from "@react-navigation/native";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useContext} from "react";
+import {AuthContext} from "../../context/authContext";
 import {icons} from "../../constants/icons";
+import {getSensorData} from "../../services/api";
 
 
 export const FarmDetails = () => {
     const route = useRoute();
-    const {name, location, crop, temperature, moisture} = route.params;
+    const {id, name, location, crop, temperature, moisture, size, esp32Id} = route.params;
     const navigation = useNavigation();
 
     useEffect(() => {
@@ -14,45 +16,41 @@ export const FarmDetails = () => {
     }, [route]);
 
 
-    const [irrigationOn, setIrrigationOn] = useState(false);
+    // const [irrigationOn, setIrrigationOn] = useState(false);x
 
     return (
         <ScrollView style={styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity style={styles.editButton}>
+                <TouchableOpacity style={styles.editButton} onPress={()=> navigation.navigate("Edit Farm", {id, name, location, crop, size })} >
                     <Image source={icons.edit} style={styles.editIcon} />
                     <Text style={styles.editText}> Edit</Text>
                 </TouchableOpacity>
             </View>
 
 
-            <View style={styles.switchWrapper}>
+            <TouchableOpacity style={styles.switchWrapper} onPress={() => navigation.navigate("Irrigation Control", {id, esp32Id})}>
                 <Text style={styles.switchLabel}>Irrigation Control</Text>
-                <Switch
-                    value={irrigationOn}
-                    onValueChange={setIrrigationOn}
-                />
-            </View>
+            </TouchableOpacity>
 
             <View style={styles.section}>
                 <Text style={styles.sectionHeader}>Farm Information</Text>
-                <Text>Farm Size: 50 acres</Text>
+                <Text>Farm Size: {size}</Text>
                 <Text>Location: {location}</Text>
                 <Text>Soil type: Loam</Text>
-                <Text>Crop types: {crop}</Text>
+                <Text>Crop type: {crop}</Text>
             </View>
 
             <View style={[styles.card, styles.moistureCard]}>
                 <Text style={styles.sensorTitle}>Moisture Sensor</Text>
-                <Text style={styles.sensorMeta}>Last Update: 5 minutes ago</Text>
-                <Text style={styles.sensorMeta}>Threshold Range: 30% – 80%</Text>
+                <Text style={styles.sensorMeta}>Last Update: </Text>
+                <Text style={styles.sensorMeta}>Threshold Range: </Text>
                 <Text style={styles.sensorValue}>{moisture}%</Text>
             </View>
 
             <View style={[styles.card, styles.tempCard]}>
                 <Text style={styles.sensorTitle}>Temperature Sensor</Text>
-                <Text style={styles.sensorMeta}>Last Update: 2 days ago</Text>
-                <Text style={styles.sensorMeta}>Threshold Range: 15°C – 35°C</Text>
+                <Text style={styles.sensorMeta}>Last Update: </Text>
+                <Text style={styles.sensorMeta}>Threshold Range: </Text>
                 <Text style={styles.sensorValue}> {temperature}°</Text>
             </View>
 
@@ -77,6 +75,7 @@ const styles = StyleSheet.create({
         color: '#4CAF50',
         fontSize: 16,
         marginBottom: 10,
+        fontFamily: 'Nunito-Bold',
     },
     header: {
         flexDirection: 'row-reverse',
@@ -115,11 +114,13 @@ const styles = StyleSheet.create({
         padding: 12,
         borderRadius: 10,
         marginVertical: 12,
+        height:50
     },
     switchLabel: {
         fontWeight:"bold",
         fontSize: 16,
         color: '#126E82',
+        fontFamily: 'Nunito-Medium',
     },
     section: {
         marginVertical: 10,
@@ -128,6 +129,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 16,
         marginBottom: 8,
+        fontFamily: 'Nunito-Variable',
     },
     card: {
         borderRadius: 10,

@@ -2,7 +2,8 @@ import React from "react";
 import {createStackNavigator} from '@react-navigation/stack';
 import {Dashboard} from "../screens/dashboard";
 import {FarmDetails} from "../screens/Farm/farmDetail";
-import {CreateFarm} from "../screens/Farm/createFarm";
+import IrrigationControl from "../screens/irrigationControl";
+import EditFarm from "../screens/Farm/editFarm";
 
 
 const Stack = createStackNavigator();
@@ -12,10 +13,19 @@ export const DashboardStack = () => {
         <Stack.Navigator>
             <Stack.Screen name="Dashboard" component={Dashboard} options={{headerShown: true}}/>
             <Stack.Screen name="FarmDetail" component={FarmDetails}/>
-            {/*<Stack.Screen name="CreateFarm" component={CreateFarm}/>*/}
+            <Stack.Screen name="Irrigation Control" component={IrrigationControl} />
+            <Stack.Screen name="Edit Farm" component={EditFarm} />
 
         </Stack.Navigator>
     );
 };
+
+export const FarmDetailStack = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="Irrigation Control" component={IrrigationControl}/>
+        </Stack.Navigator>
+    )
+}
 
 

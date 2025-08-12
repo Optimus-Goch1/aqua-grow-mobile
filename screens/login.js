@@ -17,12 +17,13 @@ const Login = ({navigation}) => {
         const result = await loginUser(email, password);
         if (result.success) {
             signIn(result.token, result.user);
-            console.log(result.token);
-            navigation.replace("Dashboard");
+            navigation.reset({
+                index: 0,
+                routes: [{ name: 'Home' }],
+            });
 
         } else {
             Alert.alert("Login Failed", result.message);
-            console.log(result)
         }
     };
 

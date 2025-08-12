@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "mobile",
-    "slug": "mobile",
+    "slug": "aquagrow",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,7 +13,8 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.mobile"
     },
     "android": {
       "adaptiveIcon": {
@@ -24,6 +25,21 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c2fcfe77-7751-45ce-8ee5-f211ad99f9e6"
+      },
+      "API_KEY": "bf51c1c820d923a027b3e29f5521026550943172f47f68769d1cf19bc3815bea",
+      "USER_SERVICE_URL": "http://184.72.148.139:5000",
+      "MONITORING_SERVICE_URL": "http://3.86.164.216:5001",
+      "IRRIGATION_SERVICE_URL": "http://13.216.217.120:5002",
+      "router": {}
+    },
+    "owner": "goch",
+    "plugins": [
+      "expo-font",
+      "expo-router"
+    ]
   }
 }

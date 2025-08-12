@@ -29,7 +29,10 @@ const Signup = ({navigation}) => {
 
             if (response.success) {
                 signIn(response.token, response.user); // update context
-                navigation.replace('Dashboard'); // redirect after successful signup
+                navigation.reset({
+                    index: 0,
+                    routes: [{ name: 'Home' }],
+                });
             } else {
                 Alert.alert('Sign Up Failed', response.message || 'Try again');
             }
@@ -132,7 +135,7 @@ const styles = StyleSheet.create({
     subtitle: {
         marginTop: 8,
         color: '#6E6E6E',
-        fontFamily: 'Inter',
+        fontFamily: 'Nunito-Medium',
     },
     form: {
         marginTop: 30,
@@ -146,7 +149,7 @@ const styles = StyleSheet.create({
     },
     input: {
         color: '#000',
-        fontFamily: 'Inter',
+        fontFamily: 'Nunito-Medium',
     },
     rememberBox: {
         marginTop: 15,
@@ -154,7 +157,7 @@ const styles = StyleSheet.create({
     },
     rememberText: {
         fontSize: 13,
-        fontFamily: 'Inter',
+        fontFamily: 'Nunito-Medium',
     },
     actions: {
         marginTop: 30,
@@ -173,13 +176,13 @@ const styles = StyleSheet.create({
     signupText: {
         color: '#fff',
         fontSize: 18,
-        fontFamily: 'Inter',
+        fontFamily: 'Nunito-Medium',
     },
     footer: {
         marginTop: 12,
         fontSize: 12,
         textAlign: 'center',
-        fontFamily: 'Inter',
+        fontFamily: 'Nunito-Medium',
     },
     link: {
         color: '#4CAF50',

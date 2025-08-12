@@ -85,6 +85,6 @@ const styles = StyleSheet.create({
     },
     cardText: {
         fontSize: 16,
-        fontFamily: 'Inter',
+        fontFamily: 'Nunito-Medium',
     },
 });

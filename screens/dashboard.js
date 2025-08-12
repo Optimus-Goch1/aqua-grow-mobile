@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     },
     text: {
         paddingHorizontal:10,
+        fontFamily: "Nunito-Medium",
     }
 })
 

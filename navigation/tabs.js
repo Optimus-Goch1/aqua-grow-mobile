@@ -4,24 +4,24 @@ import {Notifications} from "../screens/notifications";
 import {DashboardStack} from "./stack";
 import {hp, wp} from "../utils/dimensions";
 import {icons} from "../constants/icons";
-import {View, Image, Text, StyleSheet} from "react-native";
+import {Image, StyleSheet, Text, View} from "react-native";
 import {CreateFarm} from "../screens/Farm/createFarm";
 
 const Tab = createBottomTabNavigator();
 
-const TabIcon = ({ focused, icon, title }) => {
+const TabIcon = ({focused, icon, title}) => {
     if (focused) {
         return (
-            <View style={[styles.focusedContainer, { minWidth: wp(28), minHeight: hp(4) }]}>
-                <Image source={icon} style={styles.focusedIcon} />
+            <View style={[styles.focusedContainer, {minWidth: wp(28), minHeight: hp(4)}]}>
+                <Image source={icon} style={styles.focusedIcon}/>
                 <Text style={styles.focusedText}>{title}</Text>
             </View>
         );
     }
 
     return (
-        <View style={[styles.unfocusedContainer, { marginTop: hp(4) }]}>
-            <Image source={icon} style={styles.unfocusedIcon} />
+        <View style={[styles.unfocusedContainer, {marginTop: hp(4)}]}>
+            <Image source={icon} style={styles.unfocusedIcon}/>
         </View>
     );
 };
@@ -37,7 +37,7 @@ export const BottomTab = () => {
 
                 },
             }}>
-            <Tab.Screen name="Dashboard" component={DashboardStack} options={{
+            <Tab.Screen name="DashboardHome" component={DashboardStack} options={{
 
                 headerShown: false,
                 tabBarIcon: ({focused}) => (
@@ -51,7 +51,7 @@ export const BottomTab = () => {
                                 <TabIcon focused={focused} icon={icons.notification} title="Notifications"/>
                             ),
                         }}/>
-            <Tab.Screen name="CreateFarm" component={CreateFarm}
+            <Tab.Screen name="New Farm" component={CreateFarm}
                         options={{
                             headerShown: true,
                             tabBarIcon: ({focused}) => (
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: '500',
         marginLeft: 8,
-        fontFamily: 'Inter',
+        fontFamily: 'Nunito-Bold',
     },
     unfocusedContainer: {
         width: 34,

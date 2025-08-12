@@ -53,12 +53,15 @@ const styles = StyleSheet.create({
         left: 5,
         right: 0,
         alignItems: 'center',
+        fontFamily: 'Nunito-Medium',
     },
     fillText: {
         fontSize: 15,
         fontWeight: 'bold',
+        fontFamily: 'Nunito-Medium',
     },
     label: {
         marginTop: -20,
+        fontFamily: 'Nunito-Medium',
     },
 });

@@ -5,22 +5,22 @@ import {Dial} from "../dial";
 import {images} from "../../constants/images";
 
 
-const FarmItem = ({name, location, crop, temperature, moisture}) => {
+const FarmItem = ({id, name, location, crop, temperature, moisture, size, esp32Id}) => {
     const navigation = useNavigation();
 
 
     return (
         <TouchableOpacity style={styles.card}
-                          onPress={() => navigation.navigate("FarmDetail", {name, location, crop, temperature, moisture})}>
+                          onPress={() => navigation.navigate("FarmDetail", {id, name, location, crop, temperature, moisture, size, esp32Id})}>
             <View>
                 <Text style={styles.text}>{name}</Text>
 
                 <Image source={images.farm} style={styles.image}/>
 
                 <View style={styles.dialsRow}>
-                    <Dial color="blue" fill={moist} text={"Moisture"}/>
+                    <Dial color="blue" fill={moisture} text={"Moisture"}/>
 
-                    <Dial color="red" fill={temp} text={"Temperature"}/>
+                    <Dial color="red" fill={temperature} text={"Temperature"}/>
 
 
                 </View>
@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
 
     },
     text: {
-        fontFamily: "Inter",
+        fontFamily: "Nunito-Medium",
+        // fontWeight: 'bold',
     },
     image: {
         width: "107%",

@@ -7,7 +7,7 @@ export const AddFarmCard = () => {
     const navigation = useNavigation();
 
     return (
-        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate("CreateFarm")}>
+        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate("New Farm")}>
             <View style={styles.inner}>
                 <View style={styles.circle}>
                     <Image source={icons.add} style={styles.icon}/>
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 14,
-        fontFamily: 'Inter',
+        fontFamily: 'Nunito-Medium',
         color: '#000',
     },
 });
