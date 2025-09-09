@@ -51,8 +51,8 @@ export const CreateFarm = () => {
             soil_type: soilType,
             size: farmSize,
             unit: unit,
-            temperature_upper_threshold: temperatureLower,
-            temperature_lower_threshold: temperatureUpper,
+            temperature_upper_threshold: temperatureUpper,
+            temperature_lower_threshold: temperatureLower,
             moisture_lower_threshold: moistureLower,
             moisture_upper_threshold: moistureUpper,
         };
@@ -159,7 +159,7 @@ export const CreateFarm = () => {
 
                     <View style={stylesUpgraded.row}>
                         <View style={stylesUpgraded.inputWrapper}>
-                            <Text style={stylesUpgraded.label}>Minimum Degree</Text>
+                            <Text style={stylesUpgraded.label}>Maximum Degree</Text>
                             <TextInput
                                 style={stylesUpgraded.input}
                                 value={temperatureLower}
@@ -169,7 +169,7 @@ export const CreateFarm = () => {
                         </View>
 
                         <View style={stylesUpgraded.inputWrapper}>
-                            <Text style={stylesUpgraded.label}>Maximum Degree</Text>
+                            <Text style={stylesUpgraded.label}>Minimum Degree</Text>
                             <TextInput
                                 style={stylesUpgraded.input}
                                 value={temperatureUpper}

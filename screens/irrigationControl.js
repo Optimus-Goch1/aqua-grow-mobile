@@ -114,23 +114,19 @@ const IrrigationControl = () => {
             <View>
                 <Text style={styles.subtext}>Trigger By Temperature</Text>
 
-                <Text> Maximum Threshold - temperature which turns on the Irrigation</Text>
+                <Text> Maximum Threshold</Text>
                 <TextInput style={styles.input}
-
-                           selectedValue={temperatureOnTrigger}
-                           onValueChange={(val) => setTemperatureOnTrigger(val)}
-
+                           value={temperatureOnTrigger}
+                           onChangeText={setTemperatureOnTrigger}
+                           keyboardType="numeric"
                 />
-                <Text> Minimum Threshold - temperature which turns off the Irrigation</Text>
+                <Text> Minimum Threshold</Text>
                 <TextInput style={styles.input}
-
-                           selectedValue={temperatureOffTrigger}
-                           onValueChange={(val) => setTemperatureOffTrigger(val)}
-
+                           value={temperatureOffTrigger}
+                           onChangeText={setTemperatureOffTrigger}
+                           keyboardType="numeric"
                 />
             </View>
-
-
             <View style={styles.buttonRow}>
                 <TouchableOpacity style={styles.saveButton} onPress={handleUpdateThresholds}>
                     <Text style={styles.buttonText}>Save changes</Text>

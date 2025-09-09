@@ -1,30 +1,36 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { storeToken, removeToken, getToken } from '../utils/storage';
+import {
+    storeToken, removeToken, getToken,
+    storeUser, removeUser, getUser
+} from '../utils/storage';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({ token: null, user: null });
-    const [loading, setLoading] = useState(true); // Tracks loading while retrieving token
+    const [loading, setLoading] = useState(true); // while restoring auth
 
     useEffect(() => {
-        const loadToken = async () => {
+        const loadAuth = async () => {
             const token = await getToken();
-            if (token) {
-                setAuth({ token, user: null }); // or retrieve user too if stored
+            const user = await getUser();
+            if (token && user) {
+                setAuth({ token, user });
             }
-            setLoading(false); // done loading
+            setLoading(false);
         };
-        loadToken();
+        loadAuth();
     }, []);
 
     const signIn = async (token, user) => {
         await storeToken(token);
+        await storeUser(user);
         setAuth({ token, user });
     };
 
     const signOut = async () => {
         await removeToken();
+        await removeUser();
         setAuth({ token: null, user: null });
     };
 

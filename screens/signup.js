@@ -22,10 +22,10 @@ const Signup = ({navigation}) => {
             return;
         }
 
-        // setLoading(true);
+        setLoading(true);
         try {
             const response = await signupUser(name, email, password);
-            // setLoading(false);
+            setLoading(false);
 
             if (response.success) {
                 signIn(response.token, response.user); // update context

@@ -20,25 +20,28 @@ export const FarmDetails = () => {
 
     return (
         <ScrollView style={styles.container}>
-            <View style={styles.header}>
-                <TouchableOpacity style={styles.editButton} onPress={()=> navigation.navigate("Edit Farm", {id, name, location, crop, size })} >
-                    <Image source={icons.edit} style={styles.editIcon} />
-                    <Text style={styles.editText}> Edit</Text>
-                </TouchableOpacity>
+
+            <View style={styles.section}>
+                <Text style={styles.sectionHeader}>Farm Information</Text>
+                <View style={styles.header}>
+                    <TouchableOpacity style={styles.editButton} onPress={()=> navigation.navigate("Edit Farm", {id, name, location, crop, size })} >
+                        <Image source={icons.edit} style={styles.editIcon} />
+                        <Text style={styles.editText}> Edit</Text>
+                    </TouchableOpacity>
+                </View>
+
+                <Text>Farm Size: {size} acres</Text>
+                <Text>Location: {location}</Text>
+                <Text>Soil type: Loam</Text>
+                <Text>Crop type: {crop}</Text>
+
             </View>
+
 
 
             <TouchableOpacity style={styles.switchWrapper} onPress={() => navigation.navigate("Irrigation Control", {id, esp32Id})}>
                 <Text style={styles.switchLabel}>Irrigation Control</Text>
             </TouchableOpacity>
-
-            <View style={styles.section}>
-                <Text style={styles.sectionHeader}>Farm Information</Text>
-                <Text>Farm Size: {size}</Text>
-                <Text>Location: {location}</Text>
-                <Text>Soil type: Loam</Text>
-                <Text>Crop type: {crop}</Text>
-            </View>
 
             <View style={[styles.card, styles.moistureCard]}>
                 <Text style={styles.sensorTitle}>Moisture Sensor</Text>
@@ -53,6 +56,8 @@ export const FarmDetails = () => {
                 <Text style={styles.sensorMeta}>Threshold Range: </Text>
                 <Text style={styles.sensorValue}> {temperature}°</Text>
             </View>
+
+
 
         </ScrollView>
     )

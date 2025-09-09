@@ -26,7 +26,7 @@ const FarmList = () => {
 
             const farmsWithSensorData = await Promise.all(
                 baseFarms.map(async (farm) => {
-                    const sensorResponse = await getSensorData(token, farm.id);
+                    const sensorResponse = await getSensorData(token, farm.esp32_id);
                     if (sensorResponse.success) {
                         return {
                             ...farm,

@@ -52,7 +52,7 @@ export default function EditFarm() {
 
         if (result.success) {
             Alert.alert("Deleted", result.message);
-            navigation.navigate("DashboardHome");
+            navigation.navigate("Dashboard");
         } else {
             Alert.alert("Error", result.message);
         }
@@ -60,30 +60,6 @@ export default function EditFarm() {
 
     return (
         <ScrollView style={styles.container}>
-            <View style={styles.header}>
-                <TouchableOpacity
-                    style={styles.deleteBtn}
-                    onPress={() => {
-                        Alert.alert(
-                            "Delete Farm",
-                            "Are you sure you want to delete this farm? This action cannot be undone.",
-                            [
-                                {text: "Cancel", style: "cancel"},
-                                {
-                                    text: "Delete",
-                                    style: "destructive",
-                                    onPress: () => handleDelete(), // your delete logic here
-                                },
-                            ]
-                        );
-                    }}
-                >
-                    <Ionicons name="trash-outline" size={16} color="red"/>
-                    <Text style={styles.deleteText}>Delete</Text>
-                </TouchableOpacity>
-            </View>
-
-
             <Text style={styles.sectionTitle}>Farm Information</Text>
 
             <Text style={styles.label}>Name</Text>
@@ -105,7 +81,7 @@ export default function EditFarm() {
             </View>
 
 
-            <Text style={styles.label}>Farm Location {id}</Text>
+            <Text style={styles.label}>Farm Location</Text>
             <View style={styles.input}>
                 <TextInput
                     value={farmLocation}
@@ -132,9 +108,31 @@ export default function EditFarm() {
             />
 
 
-            <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
-                <Text style={styles.saveButtonText}>Save changes</Text>
-            </TouchableOpacity>
+            <View style={styles.buttonRow}>
+                <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
+                    <Text style={styles.saveButtonText}>Save changes</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.deleteBtn}
+                    onPress={() => {
+                        Alert.alert(
+                            "Delete Farm",
+                            "Are you sure you want to delete this farm? This action cannot be undone.",
+                            [
+                                {text: "Cancel", style: "cancel"},
+                                {
+                                    text: "Delete",
+                                    style: "destructive",
+                                    onPress: () => handleDelete(), // your delete logic here
+                                },
+                            ]
+                        );
+                    }}
+                >
+                    <Ionicons name="trash-outline" size={16} color="red"/>
+                    <Text style={styles.deleteText}>Delete</Text>
+                </TouchableOpacity>
+            </View>
 
         </ScrollView>
     );
@@ -146,7 +144,7 @@ const styles = StyleSheet.create({
         paddingHorizontal:
             15,
         paddingTop:
-            50,
+            15,
     }
     ,
     header: {
@@ -177,6 +175,7 @@ const styles = StyleSheet.create({
     ,
     deleteBtn: {
         borderWidth: 1,
+        flex: 1,
         borderColor:
             'red',
         paddingHorizontal:
@@ -184,13 +183,10 @@ const styles = StyleSheet.create({
         paddingVertical:
             4,
         borderRadius:
-            6,
-        flexDirection:
-            'row-reverse',
+            8,
         alignItems:
             'center',
-
-
+        padding: 14,
     }
     ,
     deleteText: {
@@ -227,8 +223,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight:
             'bold',
-        marginTop:
-            20,
         marginBottom:
             8,
     }
@@ -243,16 +237,18 @@ const styles = StyleSheet.create({
     ,
     input: {
         borderWidth: 1,
-        borderColor:
-            '#ccc',
-        borderRadius:
+        borderColor
+            :
+            '#ddd',
+        borderRadius
+            :
             8,
-        paddingHorizontal:
+        padding
+            :
             10,
-        // paddingVertical: 1,
-        flex: 1,
-        backgroundColor:
-            '#f9f9f9',
+        marginTop
+            :
+            5,
     }
     ,
     row: {
@@ -301,13 +297,18 @@ const styles = StyleSheet.create({
             6,
     }
     ,
-
     saveButton: {
         backgroundColor: '#4CAF50',
-        paddingVertical: 16,
-        borderRadius: 10,
+        padding: 14,
+        borderRadius: 8,
+        flex: 1,
+        marginRight: 5,
         alignItems: 'center',
-        marginTop: 30,
+    },
+    buttonRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 20,
     },
     saveButtonText: {
         color: '#fff',

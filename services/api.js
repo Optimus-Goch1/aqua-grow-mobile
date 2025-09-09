@@ -5,14 +5,13 @@ const {
     USER_SERVICE_URL,
     MONITORING_SERVICE_URL,
     IRRIGATION_SERVICE_URL,
-} = Constants.expoConfig.extra;
 
-console.log('API Key:', API_KEY);
+} = Constants.expoConfig.extra;
 
 export const loginUser = async (email, password) => {
     console.log("URL:", `${USER_SERVICE_URL}/users/login`);
     try {
-        const response = await fetch(`${USER_SERVICE_URL}/users/login`, {
+        const response = await fetch(`${USER_SERVICE_URL}/user/user/users/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password })
@@ -38,7 +37,7 @@ export const loginUser = async (email, password) => {
 
 export const signupUser = async (username, email, password) => {
     try {
-        const res = await fetch(`${USER_SERVICE_URL}/users/signup`, {
+        const res = await fetch(`${USER_SERVICE_URL}/user/user/users/signup`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, email, password }),
@@ -58,7 +57,7 @@ export const signupUser = async (username, email, password) => {
 
 export const getUserFarms = async (token) => {
     try {
-        const response = await fetch(`${USER_SERVICE_URL}/farms/my_farms`, {
+        const response = await fetch(`${USER_SERVICE_URL}/user/user/farms/my_farms`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -78,7 +77,7 @@ export const getUserFarms = async (token) => {
 export const createFarm = async (token, payload) => {
     try {
 
-        const response = await fetch(`${USER_SERVICE_URL}/farms/create_farm`, {
+        const response = await fetch(`${USER_SERVICE_URL}/user/user/farms/create_farm`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -100,10 +99,10 @@ export const createFarm = async (token, payload) => {
 };
 
 
-export const getSensorData = async (token, farmId) => {
+export const getSensorData = async (token, esp32Id) => {
 
     try {
-        const response = await fetch(`${MONITORING_SERVICE_URL}/sensors/${farmId}`, {
+        const response = await fetch(`${MONITORING_SERVICE_URL}/sensor/sensor/sensors/${esp32Id}`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -130,7 +129,7 @@ export const getSensorData = async (token, farmId) => {
 
 export const updateFarm = async (token, esp32Id, payload) => {
     try {
-        const response = await fetch(`${USER_SERVICE_URL}/farms/update_farm/${esp32Id}`, {
+        const response = await fetch(`${USER_SERVICE_URL}/user/user/farms/update_farm/${esp32Id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -155,7 +154,7 @@ export const updateFarm = async (token, esp32Id, payload) => {
 
 export const updateThreshold = async (token, farmId, payload) => {
     try {
-        const response = await fetch(`${USER_SERVICE_URL}/farms/update_threshold/${farmId}`, {
+        const response = await fetch(`${USER_SERVICE_URL}/user/user/farms/update_threshold/${farmId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -179,7 +178,7 @@ export const updateThreshold = async (token, farmId, payload) => {
 
 export const deleteFarm = async (token, farmId) => {
     try {
-        const response = await fetch(`${USER_SERVICE_URL}/farms/delete_farm/${farmId}`, {
+        const response = await fetch(`${USER_SERVICE_URL}/user/user/farms/delete_farm/${farmId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -206,7 +205,7 @@ export const deleteFarm = async (token, farmId) => {
 
 export const toggleIrrigation = async (token, farmId, status) => {
     try {
-        const response = await fetch(`${IRRIGATION_SERVICE_URL}/irrigation/toggle/${farmId}`, {
+        const response = await fetch(`${IRRIGATION_SERVICE_URL}/irrigation/irrigation/toggle/${farmId}`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -231,7 +230,7 @@ export const toggleIrrigation = async (token, farmId, status) => {
 
 export const getThreshold = async (esp32Id) => {
     try {
-        const res = await fetch(`${USER_SERVICE_URL}/farms/threshold/${esp32Id}`, {
+        const res = await fetch(`${USER_SERVICE_URL}/user/user/farms/threshold/${esp32Id}`, {
             headers: {
                 "X-API-KEY": API_KEY, // replace with your actual API key constant
             }
